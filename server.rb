@@ -2,6 +2,7 @@ require 'sinatra'
 require 'pg'
 require 'csv'
 require 'json'
+require 'pry'
 
 def db_connection
   begin
@@ -103,7 +104,7 @@ def generate_heat_map_data
     record.each do |attr, value|
       unless ['id', 'state_id', 'state_name'].include?(attr)
         month_int = month_to_int(attr)
-        json_data << [month_int, state_int, value.to_f]
+        json_data << [state_int, month_int, value.to_f]
       else
         next
       end
