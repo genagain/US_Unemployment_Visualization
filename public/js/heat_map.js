@@ -15,7 +15,7 @@ function draw () {
 
 
       title: {
-        text: 'Sales per employee per weekday'
+        text: 'Unemployment rate by state from January 2011 to December 2012'
       },
 
       xAxis: {
@@ -111,14 +111,14 @@ function draw () {
         layout: 'vertical',
         margin: 0,
         verticalAlign: 'top',
-        y: 25,
-        symbolHeight: 280
+        y: 150,
+        symbolHeight: 750
       },
 
       tooltip: {
         formatter: function () {
-          return '<b>' + this.series.xAxis.categories[this.point.x] + '</b> sold <br><b>' +
-            this.point.value + '</b> items on <br><b>' + this.series.yAxis.categories[this.point.y] + '</b>';
+          return 'In <b>' + this.series.xAxis.categories[this.point.x] + '</b>, <b>' +
+            this.point.value + '%</b> of <b>' + this.series.yAxis.categories[this.point.y] + '\'s</b> residents were unemployed.';
         }
       },
 
@@ -126,6 +126,7 @@ function draw () {
         name: 'Sales per employee',
         borderWidth: 1,
         data: data,
+        turboThreshold: 100000,
         dataLabels: {
           enabled: true,
           color: '#000000'
