@@ -103,7 +103,7 @@ function draw () {
       colorAxis: {
         min: 0,
         minColor: '#FFFFFF',
-        maxColor: Highcharts.getOptions().colors[0]
+        maxColor: '#0B0B47'
       },
 
       legend: {
