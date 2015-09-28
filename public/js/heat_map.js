@@ -43,56 +43,56 @@ window.addEventListener('load', draw, false);
         },
 
         yAxis: {
-            categories: ['Wyoming'
-                         'Wisconsin'
-                         'West Virginia'
-                         'Washington'
-                         'Virginia'
-                         'Vermont'
-                         'Utah'
-                         'Texas'
-                         'Tennessee'
-                         'South Dakota'
-                         'South Carolina'
-                         'Rhode Island'
-                         'Pennsylvania'
-                         'Oregon'
-                         'Oklahoma'
-                         'Ohio'
-                         'North Dakota'
-                         'North Carolina'
-                         'New York'
-                         'New Mexico'
-                         'New Jersey'
-                         'New Hampshire'
-                         'Nevada'
-                         'Nebraska'
-                         'Montana'
-                         'Missouri'
-                         'Mississippi'
-                         'Minnesota'
-                         'Michigan'
-                         'Massachusetts'
-                         'Maryland'
-                         'Maine'
-                         'Louisiana'
-                         'Kentucky'
-                         'Kansas'
-                         'Iowa'
-                         'Indiana'
-                         'Illinois'
-                         'Idaho'
-                         'Hawaii'
-                         'Georgia'
-                         'Florida'
-                         'District of Columbia'
-                         'Delaware'
-                         'Connecticut'
-                         'Colorado'
-                         'California'
-                         'Arkansas'
-                         'Arizona'
-                         'Alaska'
+            categories: ['Wyoming',
+                         'Wisconsin',
+                         'West Virginia',
+                         'Washington',
+                         'Virginia',
+                         'Vermont',
+                         'Utah',
+                         'Texas',
+                         'Tennessee',
+                         'South Dakota',
+                         'South Carolina',
+                         'Rhode Island',
+                         'Pennsylvania',
+                         'Oregon',
+                         'Oklahoma',
+                         'Ohio',
+                         'North Dakota',
+                         'North Carolina',
+                         'New York',
+                         'New Mexico',
+                         'New Jersey',
+                         'New Hampshire',
+                         'Nevada',
+                         'Nebraska',
+                         'Montana',
+                         'Missouri',
+                         'Mississippi',
+                         'Minnesota',
+                         'Michigan',
+                         'Massachusetts',
+                         'Maryland',
+                         'Maine',
+                         'Louisiana',
+                         'Kentucky',
+                         'Kansas',
+                         'Iowa',
+                         'Indiana',
+                         'Illinois',
+                         'Idaho',
+                         'Hawaii',
+                         'Georgia',
+                         'Florida',
+                         'District of Columbia',
+                         'Delaware',
+                         'Connecticut',
+                         'Colorado',
+                         'California',
+                         'Arkansas',
+                         'Arizona',
+                         'Alaska',
                          'Alabama'],
            title: null
         },
