@@ -123,14 +123,10 @@ function draw () {
       },
 
       series: [{
-        name: 'Sales per employee',
+        name: 'Unemployment Rate',
         borderWidth: 1,
         data: data,
-        turboThreshold: 100000,
-        dataLabels: {
-          enabled: true,
-          color: '#000000'
-        }
+        turboThreshold: 100000
       }]
 
     });
