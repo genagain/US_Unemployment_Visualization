@@ -1,14 +1,10 @@
 window.addEventListener('load', draw, false);
 
 function draw () {
-  // $.getJSON('us_map.json', function (data) {
+  $.getJSON('us_map.json', function (data) {
 
     // Instanciate the map
     $('#container').highcharts('Map', {
-
-      chart : {
-        borderWidth : 1
-      },
 
       title : {
         text : 'US Employement Rate in December 2012'
@@ -51,11 +47,11 @@ function draw () {
           color: 'white',
           format: '{point.code}'
         },
-        name: 'Population density',
+        name: 'Unemployment Rate',
         tooltip: {
-          pointFormat: '{point.code}: {point.value}/km²'
+          pointFormat: '{point.code}: {point.value}%'
         }
       }]
     });
-  // });
+  });
 }

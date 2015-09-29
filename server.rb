@@ -120,13 +120,13 @@ end
 def generate_us_map_data
   json_data = []
   recent_data = db_connection { |conn| conn.exec("SELECT state_id, dec_2012 FROM unemployment_percentages;") }.to_a
-  recent_data.each do |state_id, rate|
+  recent_data.each do |state|
     state_datum = {}
-    state_datum[:value] = rate.to_f
-    state_datum[:code] = state_id
+    state_datum[:value] = state["dec_2012"].to_f
+    state_datum[:code] = state["state_id"]
     json_data << state_datum
   end
-  JSON.generate(json_data)
+  JSON.pretty_generate(json_data)
 end
 
 get '/heat_map_demo' do
