@@ -2,17 +2,13 @@ window.addEventListener('load', draw, false);
 function draw () {
   'use strict';
 
-  $.getJSON('/heat_map.json', function (data) {
+  $.getJSON('/line_graph.json', function (data) {
 
     $('#container').highcharts({
 
-      chart: {
-        type: 'heatmap',
-        marginTop: 40,
-        marginBottom: 80,
-        plotBorderWidth: 1
+      data: {
+        json: data
       },
-
 
       title: {
         text: 'Unemployment rate by state'
@@ -64,14 +60,8 @@ function draw () {
         align: 'right',
         verticalAlign: 'middle',
         borderWidth: 0
-      },
+      }
 
-      series: [{
-        name: 'Unemployment Rate',
-        borderWidth: 1,
-        data: data,
-        turboThreshold: 100000
-      }]
 
     });
   });
