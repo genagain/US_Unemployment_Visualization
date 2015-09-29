@@ -1,7 +1,7 @@
 window.addEventListener('load', draw, false);
 
 function draw () {
-  $.getJSON('us_map.json', function (data) {
+  // $.getJSON('us_map.json', function (data) {
 
     // Instanciate the map
     $('#container').highcharts('Map', {
@@ -11,7 +11,7 @@ function draw () {
       },
 
       title : {
-        text : 'US population density (/km²)'
+        text : 'US Employement Rate in December 2012'
       },
 
       legend: {
@@ -57,5 +57,5 @@ function draw () {
         }
       }]
     });
-  });
+  // });
 }
