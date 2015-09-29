@@ -96,9 +96,13 @@ def state_to_int(state)
   conversion[state] if conversion.keys.include?(state)
 end
 
+def get_records
+  db_connection { |conn| conn.exec("SELECT * FROM unemployment_percentages;") }.to_a
+end
+
 def generate_heat_map_data
   json_data = []
-  query_result = db_connection { |conn| conn.exec("SELECT * FROM unemployment_percentages;") }.to_a
+  query_result = get_records
   query_result.each do |record|
     state_int = state_to_int(record["state_name"])
     record.each do |attr, value|
@@ -113,6 +117,18 @@ def generate_heat_map_data
   JSON.generate(json_data)
 end
 
+def generate_us_map_data
+  json_data = []
+  recent_data = db_connection { |conn| conn.exec("SELECT state_id, dec_2012 FROM unemployment_percentages;") }.to_a
+  recent_data.each do |state|
+    state_datum = {}
+    state_datum[:value] = state["dec_2012"].to_f
+    state_datum[:code] = state["state_id"]
+    json_data << state_datum
+  end
+  JSON.pretty_generate(json_data)
+end
+
 get '/heat_map_demo' do
   erb :heat_map_demo
 end
@@ -123,4 +139,12 @@ end
 
 get '/heat_map.json' do
   generate_heat_map_data
+end
+
+get '/us_map' do
+  erb :us_map
+end
+
+get '/us_map.json' do
+  generate_us_map_data
 end
