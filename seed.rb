@@ -3,7 +3,7 @@ require 'csv'
 
 def db_connection
   begin
-    connection = PG.connect('ec2-54-83-43-118.compute-1.amazonaws.com', 5432, nil, nil, 'ddvfij7dd5ec7o')
+    connection = PG.connect(dbname: ENV['DATABASE'])
     yield(connection)
   ensure
     connection.close

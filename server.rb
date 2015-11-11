@@ -5,7 +5,7 @@ require 'json'
 
 def db_connection
   begin
-    connection = PG.connect(dbname: "us_unemployment_db")
+    connection = PG.connect(dbname: ENV['DATABASE'])
     yield(connection)
   ensure
     connection.close
