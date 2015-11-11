@@ -2,7 +2,6 @@ require 'sinatra'
 require 'pg'
 require 'csv'
 require 'json'
-require 'pry'
 
 def db_connection
   begin
