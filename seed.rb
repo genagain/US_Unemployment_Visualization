@@ -4,7 +4,7 @@ require 'csv'
 
 def db_connection
   begin
-    connection = PG.connect(dbname: "us_unemployment_db")
+    connection = PG.connect(dbname: "ddvfij7dd5ec7o")
     yield(connection)
   ensure
     connection.close
