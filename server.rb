@@ -5,7 +5,9 @@ require 'json'
 
 def db_connection
   begin
-    connection = PG.connect(dbname: ENV['DATABASE'])
+    # connection = PG.connect(dbname: ENV['DATABASE'])
+    uri = URI.parse(ENV['DATABASE_URL'])
+    connection = PG.connect(uri.hostname, uri.port, nil, nil, uri.path[1..-1], uri.user, uri.password)
     yield(connection)
   ensure
     connection.close
