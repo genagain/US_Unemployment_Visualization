@@ -143,9 +143,10 @@ def generate_line_graph_data
     state_data[:name] = record['state_name']
     chron_data = record.keep_if {|attribute, value| value.to_f != 0.0 && attribute != "id" }.to_a
     timeseries_data = chron_data.reverse.map { |datum| datum.last.to_f }
-    
+    state_data[:data] = timeseries_data
     json_data << state_data
   end
+  JSON.pretty_generate(json_data)
 end
 
 get '/heat_map_demo' do
