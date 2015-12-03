@@ -22,12 +22,12 @@ function draw () {
         title: {
           text: 'Unemployment Rate %'
         },
-        plotLines: [{
-          value: 0,
-          width: 1,
-          color: '#808080'
-        }]
       },
+
+      plotOptions: {
+        turboThreshold: 1500
+      },
+
       legend: {
         layout: 'vertical',
         align: 'right',
