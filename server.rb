@@ -147,6 +147,8 @@ def generate_line_graph_data
     state_data[:data] = timeseries_data
     json_data << state_data
   end
+  random_state = json_data.sample
+  random_state[:visible] = true
   JSON.generate(json_data)
 end
 
