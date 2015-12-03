@@ -146,7 +146,7 @@ def generate_line_graph_data
     state_data[:data] = timeseries_data
     json_data << state_data
   end
-  JSON.pretty_generate(json_data)
+  JSON.generate(json_data)
 end
 
 get '/heat_map_demo' do
@@ -171,4 +171,8 @@ end
 
 get '/line_graph.json' do
   generate_line_graph_data
+end
+
+get '/line_graph' do
+  erb :line_graph
 end
