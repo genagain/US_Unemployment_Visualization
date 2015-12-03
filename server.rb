@@ -6,8 +6,12 @@ require 'json'
 def db_connection
   begin
     # connection = PG.connect(dbname: ENV['DATABASE'])
-    uri = URI.parse(ENV['DATABASE_URL'])
-    connection = PG.connect(uri.hostname, uri.port, nil, nil, uri.path[1..-1], uri.user, uri.password)
+    if ENV["RACK_ENV"] == "development"
+      connection = PG.connect(dbname: "us_unemployment_db")
+    else
+      uri = URI.parse(ENV['DATABASE_URL'])
+      connection = PG.connect(uri.hostname, uri.port, nil, nil, uri.path[1..-1], uri.user, uri.password)
+    end
     yield(connection)
   ensure
     connection.close
@@ -130,6 +134,23 @@ def generate_us_map_data
   JSON.pretty_generate(json_data)
 end
 
+def generate_line_graph_data
+  json_data = []
+  query_result = get_records
+  query_result.each do |record|
+    state_data = {}
+    state_data[:name] = record['state_name']
+    state_data[:visible] = false
+    chron_data = record.keep_if {|attribute, value| value.to_f != 0.0 && attribute != "id" }.to_a
+    timeseries_data = chron_data.reverse.map { |datum| datum.last.to_f }
+    state_data[:data] = timeseries_data
+    json_data << state_data
+  end
+  random_state = json_data.sample
+  random_state[:visible] = true
+  JSON.generate(json_data)
+end
+
 get '/heat_map_demo' do
   erb :heat_map_demo
 end
@@ -148,4 +169,12 @@ end
 
 get '/us_map.json' do
   generate_us_map_data
+end
+
+get '/line_graph.json' do
+  generate_line_graph_data
+end
+
+get '/line_graph' do
+  erb :line_graph
 end
