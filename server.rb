@@ -2,7 +2,6 @@ require 'sinatra'
 require 'pg'
 require 'csv'
 require 'json'
-require 'pry'
 
 def db_connection
   begin
@@ -149,10 +148,6 @@ def generate_line_graph_data
   random_state = json_data.sample
   random_state[:visible] = true
   JSON.generate(json_data)
-end
-
-get '/heat_map_demo' do
-  erb :heat_map_demo
 end
 
 get '/heat_map' do
