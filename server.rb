@@ -150,10 +150,6 @@ def generate_line_graph_data
   JSON.generate(json_data)
 end
 
-get '/heat_map_demo' do
-  erb :heat_map_demo
-end
-
 get '/heat_map' do
   erb :heat_map
 end
