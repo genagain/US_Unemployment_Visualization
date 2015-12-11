@@ -2,10 +2,10 @@ require 'sinatra'
 require 'pg'
 require 'csv'
 require 'json'
+require 'pry'
 
 def db_connection
   begin
-    # connection = PG.connect(dbname: ENV['DATABASE'])
     if ENV["RACK_ENV"] == "development"
       connection = PG.connect(dbname: "us_unemployment_db")
     else
@@ -42,7 +42,7 @@ def month_to_int(month)
                 'apr_2011' => 3,
                 'mar_2011' => 2,
                 'feb_2011' => 1,
-                'jan_2011' => 0}
+                'jan_2011' => 0 }
   conversion[month] if conversion.keys.include?(month)
 end
 
@@ -122,12 +122,12 @@ def generate_heat_map_data
   JSON.generate(json_data)
 end
 
-def generate_us_map_data
+def generate_us_map_data(time)
   json_data = []
-  recent_data = db_connection { |conn| conn.exec("SELECT state_id, dec_2012 FROM unemployment_percentages;") }.to_a
+  recent_data = db_connection { |conn| conn.exec("SELECT state_id, #{time} FROM unemployment_percentages;") }.to_a
   recent_data.each do |state|
     state_datum = {}
-    state_datum[:value] = state["dec_2012"].to_f
+    state_datum[:value] = state[time].to_f
     state_datum[:code] = state["state_id"]
     json_data << state_datum
   end
@@ -163,13 +163,14 @@ get '/heat_map.json' do
   generate_heat_map_data
 end
 
-get '/us_map' do
-  erb :us_map
+get '/us_map/:time' do
+  erb :us_map, locals: { time: params[:time] }
 end
 
-get '/us_map.json' do
-  generate_us_map_data
+get '/us_map.json?:time?' do
+  generate_us_map_data(params[:time])
 end
+
 
 get '/line_graph.json' do
   generate_line_graph_data
