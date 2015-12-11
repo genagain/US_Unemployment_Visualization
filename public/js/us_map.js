@@ -1,9 +1,13 @@
 window.addEventListener('load', draw, false);
 
 function draw () {
-  console.log(window.location.href);
-  $.getJSON('us_map.json', function (data) {
+  var url = window.location.href;
+  var time = url.match(/[a-z]{3,4}_\d{4}$/)[0];
+  var endpoint = "\/us_map.json?time=" + time;
+  // debugger;
+  $.getJSON(endpoint, function (data) {
 
+    debugger;
     // Instanciate the map
     $('#container').highcharts('Map', {
 

@@ -127,7 +127,7 @@ def generate_us_map_data(time)
   recent_data = db_connection { |conn| conn.exec("SELECT state_id, #{time} FROM unemployment_percentages;") }.to_a
   recent_data.each do |state|
     state_datum = {}
-    state_datum[:value] = state["dec_2012"].to_f
+    state_datum[:value] = state[time].to_f
     state_datum[:code] = state["state_id"]
     json_data << state_datum
   end
@@ -176,7 +176,6 @@ get '/us_map/:time' do
 end
 
 get '/us_map.json?:time?' do
-  content_type :json
   generate_us_map_data(params[:time])
 end
 
