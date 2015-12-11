@@ -175,9 +175,9 @@ get '/us_map/:time' do
   erb :us_map, locals: { time: params[:time] }
 end
 
-get '/us_map.json' do
-  binding.pry
-  # generate_us_map_data(params[:time])
+get '/us_map.json?:time?' do
+  content_type :json
+  generate_us_map_data(params[:time])
 end
 
 
