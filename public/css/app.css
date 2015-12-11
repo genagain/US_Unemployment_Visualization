@@ -5,3 +5,8 @@
 .button:hover {
   background: #afe8ff;
 }
+
+.nav {
+  background-color: #eeeeee;
+   /* border: 1px solid #bbbbbb; */
+}
