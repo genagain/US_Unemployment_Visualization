@@ -1,6 +1,8 @@
 window.addEventListener('load', draw, false);
 
 function draw () {
+  console.log(window.location.href);
+  debugger;
   $.getJSON('us_map.json', function (data) {
 
     // Instanciate the map
