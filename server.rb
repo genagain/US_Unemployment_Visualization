@@ -42,7 +42,7 @@ def month_to_int(month)
                 'apr_2011' => 3,
                 'mar_2011' => 2,
                 'feb_2011' => 1,
-                'jan_2011' => 0}
+                'jan_2011' => 0 }
   conversion[month] if conversion.keys.include?(month)
 end
 
@@ -162,14 +162,6 @@ end
 get '/heat_map.json' do
   generate_heat_map_data
 end
-
-# get '/us_map' do
-  # erb :us_map
-# end
-
-# get '/us_map.json' do
-  # generate_us_map_data("dec_2012")
-# end
 
 get '/us_map/:time' do
   erb :us_map, locals: { time: params[:time] }
