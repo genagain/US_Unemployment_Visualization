@@ -96,7 +96,11 @@ function draw () {
           'September \'12',
           'October \'12',
           'November \'12',
-          'December \'12']
+          'December \'12'],
+
+        title: {
+          text: 'Months'
+        }
       },
       colorAxis: {
         min: 0,
